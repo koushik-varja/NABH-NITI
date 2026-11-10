@@ -1,0 +1,9 @@
+[project]
+name = "nabhniti-simulator"
+version = "1.0.0"
+description = "NABH-NITI adaptive 3D normative airspace digital twin"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

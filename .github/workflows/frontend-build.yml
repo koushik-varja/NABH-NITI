@@ -1,0 +1,38 @@
+name: Frontend Production Build
+on:
+  push:
+  pull_request:
+jobs:
+  web-production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install npm dependencies
+        run: npm install --no-audit --no-fund
+        working-directory: frontend
+      - name: Verify interface text encoding and all governance references
+        run: npm run test:encoding
+        working-directory: frontend
+      - name: Validate fleet rendering policy
+        run: npm run test:visuals
+        working-directory: frontend
+      - name: Build production frontend (TypeScript + Vite)
+        run: npm run build
+        working-directory: frontend
+      - name: Check compiled assets exist
+        run: test -s frontend/dist/index.html && test -d frontend/dist/assets
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install API dependencies for compiled app smoke
+        run: python -m pip install -r backend/requirements.txt
+      - name: Verify compiled app, static assets, API and WebSocket
+        run: python tools/check_compiled_app.py
+      - name: Upload production frontend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nabhniti-frontend-dist
+          path: frontend/dist/

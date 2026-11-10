@@ -1,0 +1,12 @@
+{
+  "evaluation": "discrete 3D A* optimality and route legality against independent BFS",
+  "seed": 3403,
+  "cases": 1000,
+  "reachable_cases": 1000,
+  "passed": 1000,
+  "failed": 0,
+  "algorithmic_correctness_percent": 100.0,
+  "real_world_prediction_accuracy": null,
+  "misses": [],
+  "disclaimer": "This is a shortest-path unit-test metric, not real-world UAV flight accuracy."
+}

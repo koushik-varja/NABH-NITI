@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+
+# Node / browser builds
+node_modules/
+dist/
+*.tsbuildinfo
+
+# OS / editor / credentials
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.pem
+*.p12
+*.log.tmp
